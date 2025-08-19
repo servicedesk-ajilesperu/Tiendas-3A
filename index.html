@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE ahtml>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -55,13 +55,8 @@
 <body class="min-h-screen">
 
     <div class="min-h-screen bg-gray-100 font-sans p-4">
-        <!-- Encabezado de la aplicación, ahora con un logo -->
+        <!-- Encabezado de la aplicación -->
         <header class="text-center py-8 bg-white rounded-xl shadow-lg mb-6 bg-gradient-header text-white flex flex-col items-center">
-            <!-- Sección del logo -->
-            <div class="mb-4">
-                <!-- Reemplaza la URL con la dirección de tu propio logo -->
-                <img src="https://placehold.co/100x100/ffffff/black?text=Tu+Logo" alt="Logo de Tiendas 3A" class="w-24 h-24 rounded-full shadow-lg">
-            </div>
             <!-- Título y subtítulo -->
             <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Guía rápida de soluciones tiendas 3A</h1>
             <p class="mt-2 text-md md:text-lg">Selecciona un problema para ver el video de la solución.</p>
@@ -69,38 +64,81 @@
 
         <!-- Contenido principal -->
         <main class="container mx-auto max-w-4xl">
-            <!-- Sección del reproductor de video (inicialmente oculta) -->
-            <!-- Esta sección ha sido eliminada ya que ahora los videos se abren en una nueva pestaña -->
+            <!-- Sección del reproductor de video (ahora visible al hacer clic) -->
+            <div id="video-player-section" class="w-full" style="display: none;">
+                <div class="video-container shadow-xl">
+                    <iframe id="youtube-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Video de Solución"></iframe>
+                </div>
+                <button onclick="closeVideo()" class="mt-4 w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition-colors duration-200 shadow-md transform hover:scale-105">
+                    Cerrar Video
+                </button>
+            </div>
             
             <!-- Sección de la lista de problemas -->
             <div id="problem-list-section" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
                 <!-- Botones para cada video -->
-                <!-- He modificado los botones para que abran los videos directamente en YouTube -->
-                <a href="https://www.youtube.com/watch?v=t8A8V_3UPEg" target="_blank" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn block">
+                <!-- He restaurado los botones para que el video se reproduzca en la misma página -->
+                <button onclick="playVideo('t8A8V_3UPEg')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
                     <h3 class="text-lg font-semibold text-gray-800">Inicio de Sesión en KALLPA</h3>
-                </a>
-                <a href="https://www.youtube.com/watch?v=h7Nf-y2b1bQ" target="_blank" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn block">
+                </button>
+                <button onclick="playVideo('h7Nf-y2b1bQ')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
                     <h3 class="text-lg font-semibold text-gray-800">Validar Internet</h3>
-                </a>
-                <a href="https://www.youtube.com/watch?v=nf6QB53r-CE" target="_blank" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn block">
+                </button>
+                <button onclick="playVideo('nf6QB53r-CE')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
                     <h3 class="text-lg font-semibold text-gray-800">Reinicio de Balanza</h3>
-                </a>
-                <a href="https://www.youtube.com/watch?v=Yw6J_n_vU5c" target="_blank" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn block">
+                </button>
+                <button onclick="playVideo('Yw6J_n_vU5c')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
                     <h3 class="text-lg font-semibold text-gray-800">Componentes del Gabinete</h3>
-                </a>
-                <a href="https://www.youtube.com/watch?v=C_jK93fVq7Q" target="_blank" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn block">
+                </button>
+                <button onclick="playVideo('C_jK93fVq7Q')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
                     <h3 class="text-lg font-semibold text-gray-800">Descarte de Cámaras</h3>
-                </a>
-                <a href="https://www.youtube.com/watch?v=SWd51cuUTjk" target="_blank" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn block">
+                </button>
+                <button onclick="playVideo('SWd51cuUTjk')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
                     <h3 class="text-lg font-semibold text-gray-800">Descarte de Monitor</h3>
-                </a>
-                <a href="https://www.youtube.com/watch?v=qmvbiLxOV7A" target="_blank" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn block">
+                </button>
+                <button onclick="playVideo('qmvbiLxOV7A')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
                     <h3 class="text-lg font-semibold text-gray-800">Reinicio Aloha</h3>
-                </a>
+                </button>
             </div>
         </main>
     </div>
 
-    <!-- El script de JavaScript para el reproductor ya no es necesario -->
+    <script>
+        /**
+         * Reproduce un video de YouTube al hacer clic en un botón de la lista.
+         * @param {string} videoId El ID del video de YouTube.
+         */
+        function playVideo(videoId) {
+            const playerSection = document.getElementById("video-player-section");
+            const player = document.getElementById("youtube-player");
+            const listSection = document.getElementById("problem-list-section");
+
+            // Construye la URL del video y lo carga en el iframe.
+            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0`;
+            
+            // Oculta la lista y muestra el reproductor.
+            listSection.style.display = "none";
+            playerSection.style.display = "block";
+            
+            // Desplaza la vista al reproductor para una mejor experiencia móvil.
+            playerSection.scrollIntoView({ behavior: "smooth" });
+        }
+
+        /**
+         * Cierra el reproductor de video y vuelve a mostrar la lista de problemas.
+         */
+        function closeVideo() {
+            const playerSection = document.getElementById("video-player-section");
+            const player = document.getElementById("youtube-player");
+            const listSection = document.getElementById("problem-list-section");
+
+            // Detiene la reproducción al vaciar el src y oculta el reproductor.
+            player.src = "";
+            playerSection.style.display = "none";
+            
+            // Vuelve a mostrar la lista de problemas.
+            listSection.style.display = "grid";
+        }
+    </script>
 </body>
 </html>
