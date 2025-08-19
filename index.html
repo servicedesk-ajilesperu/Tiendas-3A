@@ -1,132 +1,148 @@
-<!DOCTYPE html>
+YPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guía Rápida para Tiendas 3A</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-    }
-    header {
-      background-color: orange;
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 15px 20px;
-      font-size: 1.3em;
-      font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .menu-btn {
-      font-size: 1.8em;
-      margin-right: 15px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: white;
-    }
-    /* Menú lateral */
-    .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #222;
-      overflow-x: hidden;
-      transition: 0.4s;
-      padding-top: 60px;
-      z-index: 1000;
-    }
-    .sidebar a {
-      padding: 14px 25px;
-      text-decoration: none;
-      font-size: 1em;
-      color: #f1f1f1;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: 0.3s;
-    }
-    .sidebar a:hover {
-      background-color: orange;
-      color: white;
-    }
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 1.8em;
-      cursor: pointer;
-      color: white;
-    }
-    .content {
-      margin: 20px;
-      max-width: 900px;
-    }
-    iframe {
-      margin-top: 20px;
-      width: 100%;
-      height: 400px;
-      border: none;
-      border-radius: 10px;
-      display: none;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-    }
-    @media (max-width: 600px) {
-      header {
-        font-size: 1.1em;
-      }
-      iframe {
-        height: 250px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía rápida de soluciones tiendas 3A</title>
+    <!-- Incluye el CDN de Tailwind CSS para un diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Importa una fuente de Google Fonts para mejorar la tipografía */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        /* Define una animación para que los elementos aparezcan suavemente */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        /* Define el degradado de color naranja para el encabezado */
+        .bg-gradient-header {
+            background-image: linear-gradient(to right, #FFA500, #FF4500);
+        }
+        /* Agrega transiciones a los elementos de la lista para efectos visuales */
+        .list-item {
+            transition: all 0.2s ease-in-out;
+        }
+        .list-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        /* Contenedor del video con relación de aspecto 16:9 */
+        .video-container {
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen">
 
-  <header>
-    <button class="menu-btn" onclick="openMenu()">☰</button>
-    Guía Rápida para Tiendas 3A
-  </header>
+    <div class="min-h-screen bg-gray-100 font-sans p-4">
+        <!-- Encabezado de la aplicación, ahora con un logo -->
+        <header class="text-center py-8 bg-white rounded-xl shadow-lg mb-6 bg-gradient-header text-white flex flex-col items-center">
+            <!-- Sección del logo -->
+            <div class="mb-4">
+                <!-- Reemplaza la URL con la dirección de tu propio logo -->
+                <img src="https://placehold.co/100x100/ffffff/black?text=Tu+Logo" alt="Logo de Tiendas 3A" class="w-24 h-24 rounded-full shadow-lg">
+            </div>
+            <!-- Título y subtítulo -->
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Guía rápida de soluciones tiendas 3A</h1>
+            <p class="mt-2 text-md md:text-lg">Selecciona un problema para ver el video de la solución.</p>
+        </header>
 
-  <!-- Menú lateral -->
-  <div id="sidebar" class="sidebar">
-    <span class="close-btn" onclick="closeMenu()">×</span>
-    <a href="#" onclick="playVideo('https://www.youtube.com/embed/VIDEO1')">🔑 Inicio de sesión en KALLPA</a>
-    <a href="#" onclick="playVideo('https://www.youtube.com/embed/VIDEO2')">📶 Cómo valido internet</a>
-    <a href="#" onclick="playVideo('https://www.youtube.com/embed/VIDEO3')">⚖️ Reinicio de Balanza</a>
-    <a href="#" onclick="playVideo('https://www.youtube.com/embed/VIDEO4')">🖥️ Componentes del gabinete</a>
-    <a href="#" onclick="playVideo('https://www.youtube.com/embed/VIDEO5')">📹 Comunicación de cámaras</a>
-    <a href="#" onclick="playVideo('https://www.youtube.com/embed/VIDEO6')">🖼️ Descartes de monitor</a>
-    <a href="#" onclick="playVideo('https://www.youtube.com/embed/VIDEO7')">❌ Mensaje monitor cámaras</a>
-    <a href="#" onclick="playVideo('https://www.youtube.com/embed/VIDEO8')">🔄 Reinicio Aloha</a>
-  </div>
+        <!-- Contenido principal -->
+        <main class="container mx-auto max-w-4xl">
+            <!-- Sección del reproductor de video (inicialmente oculta) -->
+            <div id="video-player-section" class="w-full" style="display: none;">
+                <div class="video-container shadow-xl">
+                    <iframe id="youtube-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Video de Solución"></iframe>
+                </div>
+                <button onclick="closeVideo()" class="mt-4 w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition-colors duration-200 shadow-md transform hover:scale-105">
+                    Cerrar Video
+                </button>
+            </div>
 
-  <!-- Contenido principal -->
-  <div class="content">
-    <h2>Selecciona un tema en el menú ☰</h2>
-    <iframe id="videoPlayer"></iframe>
-  </div>
+            <!-- Sección de la lista de problemas -->
+            <div id="problem-list-section" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+                <!-- Botones para cada video -->
+                <button onclick="playVideo('t8A8V_3UPEg')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
+                    <h3 class="text-lg font-semibold text-gray-800">Inicio de Sesión en KALLPA</h3>
+                </button>
+                <button onclick="playVideo('h7Nf-y2b1bQ')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
+                    <h3 class="text-lg font-semibold text-gray-800">Validar Internet</h3>
+                </button>
+                <button onclick="playVideo('nf6QB53r-CE')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
+                    <h3 class="text-lg font-semibold text-gray-800">Reinicio de Balanza</h3>
+                </button>
+                <button onclick="playVideo('Yw6J_n_vU5c')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
+                    <h3 class="text-lg font-semibold text-gray-800">Componentes del Gabinete</h3>
+                </button>
+                <button onclick="playVideo('C_jK93fVq7Q')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
+                    <h3 class="text-lg font-semibold text-gray-800">Descarte de Cámaras</h3>
+                </button>
+                <button onclick="playVideo('SWd51cuUTjk')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
+                    <h3 class="text-lg font-semibold text-gray-800">Descarte de Monitor</h3>
+                </button>
+                <button onclick="playVideo('qmvbiLxOV7A')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
+                    <h3 class="text-lg font-semibold text-gray-800">Reinicio Aloha</h3>
+                </button>
+            </div>
+        </main>
+    </div>
 
-  <script>
-    function openMenu() {
-      document.getElementById("sidebar").style.width = "260px";
-    }
-    function closeMenu() {
-      document.getElementById("sidebar").style.width = "0";
-    }
-    function playVideo(url) {
-      const player = document.getElementById("videoPlayer");
-      player.src = url;
-      player.style.display = "block";
-      closeMenu();
-      player.scrollIntoView({behavior: "smooth"});
-    }
-  </script>
+    <script>
+        /**
+         * Reproduce un video de YouTube al hacer clic en un botón de la lista.
+         * @param {string} videoId El ID del video de YouTube.
+         */
+        function playVideo(videoId) {
+            const playerSection = document.getElementById("video-player-section");
+            const player = document.getElementById("youtube-player");
+            const listSection = document.getElementById("problem-list-section");
 
+            // Construye la URL del video y lo carga en el iframe.
+            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0`;
+            
+            // Oculta la lista y muestra el reproductor.
+            listSection.style.display = "none";
+            playerSection.style.display = "block";
+            
+            // Desplaza la vista al reproductor para una mejor experiencia móvil.
+            playerSection.scrollIntoView({ behavior: "smooth" });
+        }
+
+        /**
+         * Cierra el reproductor de video y vuelve a mostrar la lista de problemas.
+         */
+        function closeVideo() {
+            const playerSection = document.getElementById("video-player-section");
+            const player = document.getElementById("youtube-player");
+            const listSection = document.getElementById("problem-list-section");
+
+            // Detiene la reproducción al vaciar el src y oculta el reproductor.
+            player.src = "";
+            playerSection.style.display = "none";
+            
+            // Vuelve a mostrar la lista de problemas.
+            listSection.style.display = "grid";
+        }
+    </script>
 </body>
 </html>
