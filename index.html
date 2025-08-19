@@ -1,4 +1,4 @@
-<!DOCTYPE ahtml>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -50,6 +50,20 @@
             width: 100%;
             height: 100%;
         }
+        /* Estilos para el cuadro de mensaje de error */
+        #error-message-box {
+            display: none;
+            padding: 1rem;
+            margin-top: 1rem;
+            background-color: #fca5a5;
+            color: #b91c1c;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        #error-message-box a {
+            font-weight: bold;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -69,6 +83,11 @@
                 <div class="video-container shadow-xl">
                     <iframe id="youtube-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Video de Solución"></iframe>
                 </div>
+                <!-- Cuadro de mensaje de error, visible si el video no se carga -->
+                <div id="error-message-box">
+                    <p>El video no puede ser reproducido aquí debido a restricciones de YouTube. Por favor, 
+                       <a id="youtube-link" href="#" target="_blank">haz clic aquí para verlo en YouTube</a>.</p>
+                </div>
                 <button onclick="closeVideo()" class="mt-4 w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition-colors duration-200 shadow-md transform hover:scale-105">
                     Cerrar Video
                 </button>
@@ -76,8 +95,7 @@
             
             <!-- Sección de la lista de problemas -->
             <div id="problem-list-section" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-                <!-- Botones para cada video -->
-                <!-- He restaurado los botones para que el video se reproduzca en la misma página -->
+                <!-- Botones para cada video con los enlaces originales -->
                 <button onclick="playVideo('t8A8V_3UPEg')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
                     <h3 class="text-lg font-semibold text-gray-800">Inicio de Sesión en KALLPA</h3>
                 </button>
@@ -112,15 +130,32 @@
             const playerSection = document.getElementById("video-player-section");
             const player = document.getElementById("youtube-player");
             const listSection = document.getElementById("problem-list-section");
+            const errorMessageBox = document.getElementById("error-message-box");
+            const youtubeLink = document.getElementById("youtube-link");
 
-            // Construye la URL del video y lo carga en el iframe.
-            player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0`;
-            
-            // Oculta la lista y muestra el reproductor.
+            // Oculta la lista y muestra el reproductor
             listSection.style.display = "none";
             playerSection.style.display = "block";
             
-            // Desplaza la vista al reproductor para una mejor experiencia móvil.
+            // Construye la URL de incrustación del video de YouTube
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0`;
+            player.src = embedUrl;
+            
+            // Configura el enlace de respaldo
+            youtubeLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+            
+            // Si el iframe detecta que la carga falla, muestra un mensaje de error
+            // (Esta es una solución simple, ya que el evento de error de iframe puede ser limitado por seguridad)
+            player.onload = function() {
+                // El iframe se cargó, ocultamos cualquier mensaje de error anterior
+                errorMessageBox.style.display = "none";
+            };
+            player.onerror = function() {
+                // El iframe falló, mostramos el mensaje de error
+                errorMessageBox.style.display = "block";
+            };
+
+            // Para una experiencia de usuario más fluida, desplazamos la vista al reproductor.
             playerSection.scrollIntoView({ behavior: "smooth" });
         }
 
@@ -131,10 +166,12 @@
             const playerSection = document.getElementById("video-player-section");
             const player = document.getElementById("youtube-player");
             const listSection = document.getElementById("problem-list-section");
+            const errorMessageBox = document.getElementById("error-message-box");
 
-            // Detiene la reproducción al vaciar el src y oculta el reproductor.
+            // Detiene la reproducción al vaciar el src y oculta el reproductor y el mensaje de error.
             player.src = "";
             playerSection.style.display = "none";
+            errorMessageBox.style.display = "none";
             
             // Vuelve a mostrar la lista de problemas.
             listSection.style.display = "grid";
