@@ -1,337 +1,159 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Guía rápida de soluciones tiendas 3A</title>
-
-    <!-- Incluye el CDN de Tailwind CSS para un diseño moderno y responsivo -->
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-
-        /* Importa una fuente de Google Fonts para mejorar la tipografía */
-
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-
-        body {
-
-            font-family: 'Inter', sans-serif;
-
-            background-color: #f3f4f6;
-
-        }
-
-        /* Define una animación para que los elementos aparezcan suavemente */
-
-        @keyframes fadeIn {
-
-            from { opacity: 0; transform: translateY(10px); }
-
-            to { opacity: 1; transform: translateY(0); }
-
-        }
-
-        .animate-fadeIn {
-
-            animation: fadeIn 0.5s ease-out forwards;
-
-        }
-
-        /* Define el degradado de color naranja para el encabezado */
-
-        .bg-gradient-header {
-
-            background-image: linear-gradient(to right, #FFA500, #FF4500);
-
-        }
-
-        /* Agrega transiciones a los elementos de la lista para efectos visuales */
-
-        .list-item {
-
-            transition: all 0.2s ease-in-out;
-
-        }
-
-        .list-item:hover {
-
-            transform: translateY(-3px);
-
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-
-        }
-
-        /* Contenedor del video con relación de aspecto 16:9 */
-
-        .video-container {
-
-            padding-bottom: 56.25%;
-
-            height: 0;
-
-            overflow: hidden;
-
-            position: relative;
-
-            width: 100%;
-
-            margin-top: 1rem;
-
-            border-radius: 0.5rem;
-
-        }
-
-        .video-container iframe {
-
-            position: absolute;
-
-            top: 0;
-
-            left: 0;
-
-            width: 100%;
-
-            height: 100%;
-
-        }
-
-        /* Estilos para el cuadro de mensaje de error */
-
-        #error-message-box {
-
-            display: none;
-
-            padding: 1rem;
-
-            margin-top: 1rem;
-
-            background-color: #fca5a5;
-
-            color: #b91c1c;
-
-            border-radius: 0.5rem;
-
-            text-align: center;
-
-        }
-
-        #error-message-box a {
-
-            font-weight: bold;
-
-            text-decoration: underline;
-
-        }
-
-    </style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía rápida de soluciones tiendas 3A</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Importa una fuente de Google Fonts para mejorar la tipografía */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        /* Define una animación para que los elementos aparezcan suavemente */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        /* Define el degradado de color naranja para el encabezado */
+        .bg-gradient-header {
+            background-image: linear-gradient(to right, #FFA500, #FF4500);
+        }
+        /* Agrega transiciones a los elementos de la lista para efectos visuales */
+        .list-item {
+            transition: all 0.2s ease-in-out;
+        }
+        .list-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        /* Contenedor del video con relación de aspecto 16:9 */
+        .video-container {
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /* Estilos para el cuadro de mensaje de error */
+        #error-message-box {
+            display: none;
+            padding: 1rem;
+            margin-top: 1rem;
+            background-color: #fca5a5;
+            color: #b91c1c;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        #error-message-box a {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    </style>
 </head>
-
 <body class="min-h-screen">
 
-
-
-    <div class="min-h-screen bg-gray-100 font-sans p-4">
-
-        <!-- Encabezado de la aplicación -->
-
-        <header class="text-center py-8 bg-white rounded-xl shadow-lg mb-6 bg-gradient-header text-white flex flex-col items-center">
-
-            <!-- Título y subtítulo -->
-
-            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Guía rápida de soluciones tiendas 3A</h1>
-
-            <p class="mt-2 text-md md:text-lg">Selecciona un problema para ver el video de la solución.</p>
-
-        </header>
-
-
-
-        <!-- Contenido principal -->
-
-        <main class="container mx-auto max-w-4xl">
-
-            <!-- Sección del reproductor de video (ahora visible al hacer clic) -->
-
-            <div id="video-player-section" class="w-full" style="display: none;">
-
-                <div class="video-container shadow-xl">
-
-                    <iframe id="youtube-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Video de Solución"></iframe>
-
-                </div>
-
-                <!-- Cuadro de mensaje de error, visible si el video no se carga -->
-
-                <div id="error-message-box">
-
-                    <p>El video no puede ser reproducido aquí debido a restricciones de YouTube. Por favor, 
-
-                       <a id="youtube-link" href="#" target="_blank">haz clic aquí para verlo en YouTube</a>.</p>
-
-                </div>
-
-                <button onclick="closeVideo()" class="mt-4 w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition-colors duration-200 shadow-md transform hover:scale-105">
-
-                    Cerrar Video
-
-                </button>
-
-            </div>
-
-            
-
-            <!-- Sección de la lista de problemas -->
-
-            <div id="problem-list-section" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
-
-                <!-- Botones para cada video con los enlaces originales -->
-
-                <button onclick="playVideo('FzdiIpuxFWU')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
-
-                    <h3 class="text-lg font-semibold text-gray-800">Inicio de Sesión en KALLPA</h3>
-
-                </button>
-
-                <button onclick="playVideo('Gb2VPrOek9Q')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
-
-                    <h3 class="text-lg font-semibold text-gray-800">Reinicio de Balanza</h3>
-
-                </button>
-
-                <button onclick="playVideo('9AgqCf7kaVk')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
-
-                    <h3 class="text-lg font-semibold text-gray-800">Dispositivos del Gabinete</h3>
-
-                </button>
-
-            </div>
-
-        </main>
-
-    </div>
-
-
-
-    <script>
-
-        /**
-
-         * Reproduce un video de YouTube al hacer clic en un botón de la lista.
-
-         * @param {string} videoId El ID del video de YouTube.
-
-         */
-
-        function playVideo(videoId) {
-
-            const playerSection = document.getElementById("video-player-section");
-
-            const player = document.getElementById("youtube-player");
-
-            const listSection = document.getElementById("problem-list-section");
-
-            const errorMessageBox = document.getElementById("error-message-box");
-
-            const youtubeLink = document.getElementById("youtube-link");
-
-
-
-            // Oculta la lista y muestra el reproductor
-
-            listSection.style.display = "none";
-
-            playerSection.style.display = "block";
-
-            
-
-            // Construye la URL de incrustación del video de YouTube
-
-            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0`;
-
-            player.src = embedUrl;
-
-            
-
-            // Configura el enlace de respaldo
-
-            youtubeLink.href = `https://www.youtube.com/watch?v=${videoId}`;
-
-            
-
-            // Si el iframe detecta que la carga falla, muestra un mensaje de error
-
-            // (Esta es una solución simple, ya que el evento de error de iframe puede ser limitado por seguridad)
-
-            player.onload = function() {
-
-                // El iframe se cargó, ocultamos cualquier mensaje de error anterior
-
-                errorMessageBox.style.display = "none";
-
-            };
-
-            player.onerror = function() {
-
-                // El iframe falló, mostramos el mensaje de error
-
-                errorMessageBox.style.display = "block";
-
-            };
-
-
-
-            // Para una experiencia de usuario más fluida, desplazamos la vista al reproductor.
-
-            playerSection.scrollIntoView({ behavior: "smooth" });
-
-        }
-
-
-
-        /**
-
-         * Cierra el reproductor de video y vuelve a mostrar la lista de problemas.
-
-         */
-
-        function closeVideo() {
-
-            const playerSection = document.getElementById("video-player-section");
-
-            const player = document.getElementById("youtube-player");
-
-            const listSection = document.getElementById("problem-list-section");
-
-            const errorMessageBox = document.getElementById("error-message-box");
-
-
-
-            // Detiene la reproducción al vaciar el src y oculta el reproductor y el mensaje de error.
-
-            player.src = "";
-
-            playerSection.style.display = "none";
-
-            errorMessageBox.style.display = "none";
-
-            
-
-            // Vuelve a mostrar la lista de problemas.
-
-            listSection.style.display = "grid";
-
-        }
-
-    </script>
-
+    <div class="min-h-screen bg-gray-100 font-sans p-4">
+        <header class="text-center py-8 bg-white rounded-xl shadow-lg mb-6 bg-gradient-header text-white flex flex-col items-center">
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Guía rápida de soluciones tiendas 3A</h1>
+            <p class="mt-2 text-md md:text-lg">Selecciona un problema para ver el video de la solución.</p>
+        </header>
+
+        <main class="container mx-auto max-w-4xl">
+            <div id="video-player-section" class="w-full" style="display: none;">
+                <div class="video-container shadow-xl">
+                    <iframe id="youtube-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Video de Solución"></iframe>
+                </div>
+                <div id="error-message-box">
+                    <p>El video no puede ser reproducido aquí debido a restricciones de YouTube. Por favor, 
+                        <a id="youtube-link" href="#" target="_blank">haz clic aquí para verlo en YouTube</a>.</p>
+                </div>
+                <button onclick="closeVideo()" class="mt-4 w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition-colors duration-200 shadow-md transform hover:scale-105">
+                    Cerrar Video
+                </button>
+            </div>
+            
+            <div id="problem-list-section" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+                <button onclick="playVideo('FzdiIpuxFWU')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
+                    <h3 class="text-lg font-semibold text-gray-800">Inicio de Sesión en KALLPA</h3>
+                </button>
+                <button onclick="playVideo('h7Nf-y2b1bQ')" class="w-full text-left p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition-colors duration-200 list-item animate-fadeIn">
+                    <h3 class="text-lg font-semibold text-gray-800">Validar Internet</h3>
+                </button>              
+                
+            </div>
+        </main>
+    </div>
+
+    <script>
+        /**
+         * Reproduce un video de YouTube al hacer clic en un botón de la lista.
+         * @param {string} videoId El ID del video de YouTube.
+         */
+        function playVideo(videoId) {
+            const playerSection = document.getElementById("video-player-section");
+            const player = document.getElementById("youtube-player");
+            const listSection = document.getElementById("problem-list-section");
+            const errorMessageBox = document.getElementById("error-message-box");
+            const youtubeLink = document.getElementById("youtube-link");
+
+            // Oculta la lista y muestra el reproductor
+            listSection.style.display = "none";
+            playerSection.style.display = "block";
+
+            // Construye la URL de incrustación del video de YouTube
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0`;
+            player.src = embedUrl;
+
+            // Configura el enlace de respaldo
+            youtubeLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+
+            // Si el iframe detecta que la carga falla, muestra un mensaje de error
+            // (Esta es una solución simple, ya que el evento de error de iframe puede ser limitado por seguridad)
+            player.onload = function() {
+                // El iframe se cargó, ocultamos cualquier mensaje de error anterior
+                errorMessageBox.style.display = "none";
+            };
+            player.onerror = function() {
+                // El iframe falló, mostramos el mensaje de error
+                errorMessageBox.style.display = "block";
+            };
+
+            // Para una experiencia de usuario más fluida, desplazamos la vista al reproductor.
+            playerSection.scrollIntoView({ behavior: "smooth" });
+        }
+
+        /**
+         * Cierra el reproductor de video y vuelve a mostrar la lista de problemas.
+         */
+        function closeVideo() {
+            const playerSection = document.getElementById("video-player-section");
+            const player = document.getElementById("youtube-player");
+            const listSection = document.getElementById("problem-list-section");
+            const errorMessageBox = document.getElementById("error-message-box");
+
+            // Detiene la reproducción al vaciar el src y oculta el reproductor y el mensaje de error.
+            player.src = "";
+            playerSection.style.display = "none";
+            errorMessageBox.style.display = "none";
+
+            // Vuelve a mostrar la lista de problemas.
+            listSection.style.display = "grid";
+        }
+    </script>
 </body>
-
 </html>
